@@ -1,0 +1,57 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+void addGrade(vector<double>& grades, double grade) {
+    grades.push_back(grade);
+}
+
+void viewGrades(const vector<double>& grades) {
+    for (double grade : grades) {
+        cout << grade << endl;
+    }
+}
+
+double calculateAverage(const vector<double>& grades) {
+    double sum = 0;
+    for (double grade : grades) {
+        sum += grade;
+    }
+    return grades.empty() ? 0 : sum / grades.size();
+}
+
+int main() {
+    vector<double> grades;
+    int choice;
+    double grade;
+
+    while (true) {
+        cout << "\nStudent Grading System Menu:" << endl;
+        cout << "1. Add Grade" << endl;
+        cout << "2. View Grades" << endl;
+        cout << "3. Calculate Average" << endl;
+        cout << "4. Exit" << endl;
+        cout << "Enter your choice: ";
+        cin >> choice;
+
+        switch (choice) {
+            case 1:
+                cout << "Enter grade: ";
+                cin >> grade;
+                addGrade(grades, grade);
+                break;
+            case 2:
+                viewGrades(grades);
+                break;
+            case 3:
+                cout << "Average grade: " << calculateAverage(grades) << endl;
+                break;
+            case 4:
+                cout << "Exiting system. Goodbye!" << endl;
+                return 0;
+            default:
+                cout << "Invalid choice. Please try again." << endl;
+        }
+    }
+}
